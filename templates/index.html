@@ -1,0 +1,67 @@
+{%extends 'base.html'%}
+{%block main%}
+<div class="d-flex justify-content-center">
+    <canvas id="myChart"></canvas>
+</div>
+<input type="hidden" name="n_gas" value="{{n_gas}}" id="n_gas">
+<input type="hidden" name="months" value="{{months}}" id="months">
+<input type="hidden" name="combustible_fuels" value="{{combustible_fuels}}" id="combustible_fuels">
+<input type="hidden" name="wind" value="{{wind}}" id="wind">
+<input type="hidden" name="solar" value="{{solar}}" id="solar">
+<input type="hidden" name="country_name" value="{{country_name}}" id="country_name">
+  
+  <script>
+    const ctx = document.getElementById('myChart');
+    const months = document.getElementById("months").value;
+    const n_gas = document.getElementById("n_gas").value;
+    const combustible_fuels = document.getElementById("combustible_fuels").value;
+    const wind = document.getElementById("wind").value;
+    const solar = document.getElementById("solar").value;
+    const country_name = document.getElementById("country_name").value;
+    const data = {
+        labels: JSON.parse(months),
+        datasets: [
+            {
+            label: 'Natural Gas',
+            data: JSON.parse(n_gas),
+            borderColor: '#606c38',
+            backgroundColor: "#606c38"
+            },
+            {
+            label: 'Total Combustible Fuels',
+            data: JSON.parse(combustible_fuels),
+            borderColor: '#023047',
+            backgroundColor: "#023047"
+            },
+            {
+            label: 'Wind',
+            data: JSON.parse(wind),
+            borderColor: '#90e0ef',
+            backgroundColor: "#90e0ef"
+            },
+            {
+            label: 'Solar',
+            data: JSON.parse(solar),
+            borderColor: "#ffbe0b",
+            backgroundColor: "#ffbe0b"
+            }
+        ]
+    };
+    new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: `Monthly Electricity Statistics: ${country_name}`
+        }
+        }
+    }
+    });
+  </script>
+{%endblock%}

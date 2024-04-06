@@ -1,0 +1,60 @@
+{%extends 'base.html'%}
+{%block main%}
+<div class="d-flex justify-content-center">
+    <canvas id="myChart"></canvas>
+</div>
+<input type="hidden" name="data" value="{{data}}" id="data">
+<input type="hidden" name="months" value="{{months}}" id="months">
+  
+  <script>
+    const ctx = document.getElementById('myChart');
+    const country_data = document.getElementById("data").value;
+    const months = document.getElementById("months").value;
+    console.log(JSON.parse(country_data))
+    // const data = {
+    //     labels: JSON.parse(months),
+    //     datasets: [
+    //         {
+    //         label: 'Natural Gas',
+    //         data: JSON.parse(n_gas),
+    //         borderColor: '#606c38',
+    //         backgroundColor: "#606c38"
+    //         },
+    //         {
+    //         label: 'Total Combustible Fuels',
+    //         data: JSON.parse(combustible_fuels),
+    //         borderColor: '#023047',
+    //         backgroundColor: "#023047"
+    //         },
+    //         {
+    //         label: 'Wind',
+    //         data: JSON.parse(wind),
+    //         borderColor: '#90e0ef',
+    //         backgroundColor: "#90e0ef"
+    //         },
+    //         {
+    //         label: 'Solar',
+    //         data: JSON.parse(solar),
+    //         borderColor: "#ffbe0b",
+    //         backgroundColor: "#ffbe0b"
+    //         }
+    //     ]
+    // };
+    // new Chart(ctx, {
+    //   type: 'line',
+    //   data: data,
+    //   options: {
+    //     responsive: true,
+    //     plugins: {
+    //     legend: {
+    //         position: 'top',
+    //     },
+    //     title: {
+    //         display: true,
+    //         text: 'Monthly Electricity Statistics: Germany'
+    //     }
+    //     }
+    // }
+    // });
+  </script>
+{%endblock%}
